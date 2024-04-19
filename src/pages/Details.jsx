@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import GifsContext from '../contexts/GifsContext';
 import Gif from "../components/Gif";
+import getGifById from "../services/getGifById";
 
 
 function Details({ params }) {
-    const { gifs } = useContext(GifsContext);
-    console.log(gifs);
+    // const { gifs } = useContext(GifsContext);
+    // console.log(gifs);
+    const [gif, setGif] = useState({});
 
-    const gif = gifs.find(singleGif => singleGif.id === params.id);
-    console.log(gif);
+    useEffect(() => {
+        getGifById(params.id).then(responseGif => {
+            setGif(responseGif);
+        })
+    }, []);
+
+
+    // const gif = gifs.find(singleGif => singleGif.id === params.id);
+    // console.log(gif);
 
     return (
         <>

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import ListOfGifs from '../components/ListOfGifs';
 import { useGifs } from '../hooks/useGifs';
 import LazyTrending from '../components/TrendingSearches/LazyTrending';
+import { Box, Grid, Input, TextField } from '@mui/material';
 
 export default function Home() {
     const [keyword, setKeyword] = useState('');
@@ -21,31 +22,30 @@ export default function Home() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input placeholder='Search a gif here...' onChange={handleChange} type='text' value={keyword} />
-                <button>Buscar</button>
-            </form>
-            <div className="App-main">
-                <div className="App-results">
-                    <h3 className="App-title">Última búsqueda</h3>
-                    <ListOfGifs gifs={gifs} />
+            <Box component={"main"} sx={{ flexGrow: 1, p: 3 }}>
+                <div className="App-main">
+                    <Grid container spacing={2}>
+                        <Grid item md={12} xs={12}>
+                            <form onSubmit={handleSubmit}>
+                                <input placeholder='Search a gif here...' onChange={handleChange} type='text' value={keyword} />
+                                <button>Buscar</button>
+                            </form>
+                        </Grid>
+                        <Grid item md={9} xs={12}>
+                            <div className="App-results">
+                                <h3 className="App-title">Última búsqueda</h3>
+                                <ListOfGifs gifs={gifs} fromIndex={true} />
+                            </div>
+                        </Grid>
+                        <Grid item md={3} xs={12}>
+                            <div className="App-category">
+                                <LazyTrending />
+                            </div>
+                        </Grid>
+                    </Grid>
                 </div>
-                <div className="App-category">
-                    <LazyTrending />
-                </div>
-            </div>
-            {/* <h3 className='App-title'>Última busqueda</h3>
-            <ListOfGifs gifs={gifs} />
-            <h3 className='App-title'>Los gifs más populares</h3>
-            <div style={{ display: "grid" }}>
-                {
-                    POPULAR_GIFS.map((popularGif) => (
-                        <Link key={popularGif} to={`/search/${popularGif}`}>
-                            Gifs de {popularGif}
-                        </Link>
-                    ))
-                }
-            </div> */}
+            </Box>
+
         </>
     )
 }

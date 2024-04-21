@@ -30,7 +30,7 @@ export default function SearchResults({ params }) {
             ) : (
                 <>
                     <h3 className="App-title">{keyword}</h3>
-                    <ListOfGifs gifs={gifs} />
+                    <ListOfGifs gifs={gifs} fromIndex={false} />
                     <div id={"visor"} ref={externalRef}></div>
                 </>
             )}

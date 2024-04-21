@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-Color: #242424;
 }
 
 .App-logo {
@@ -62,7 +63,7 @@
   .App-category {
     position: sticky;
     top: var(--search-size-mx-h);
-    width: 40%;
+    width: 100%;
     max-width: 300px;
   }
 }

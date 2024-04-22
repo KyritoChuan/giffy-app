@@ -15,13 +15,13 @@
 }
 
 .App-title {
-  color: var(--theme-body-txt);
+  color: #ffffffde;
   margin-top: 0.6rem;
 }
 
 .App-content {
-  background-color: var(--theme-body-bg);
-  color: var(--theme-body-txt);
+  background-color: #242424;
+  color: #ffffffde;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
@@ -71,8 +71,8 @@
 .btn {
   border: 1px solid transparent;
   padding: .5rem 1rem;
-  background-color: var(--brand-color_3);
-  color: var(--theme-body-txt);
+  background-color: #1a1a1a;
+  color: #ffffffde;
   cursor: pointer;
   font-size: 1rem;
 }

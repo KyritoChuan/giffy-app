@@ -3,9 +3,10 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import Gif from '../Gif';
 
 import './ListOfGifs.css';
+import { Box, CircularProgress } from '@mui/material';
 
 
-function ListOfGifs({ gifs, fromIndex }) {
+function ListOfGifs({ gifs, fromIndex, loadNextPage }) {
     const [positionGifs, setPositionGifs] = useState();
 
     useEffect(() => {
@@ -29,15 +30,25 @@ function ListOfGifs({ gifs, fromIndex }) {
 
 
     return (
-        <ResponsiveMasonry columnsCountBreakPoints={positionGifs}>
-            <Masonry>
-                {
-                    gifs.map(({ id, title, url }, index) => {
-                        return <Gif title={title} id={id} url={url} key={index} />
-                    })
-                }
-            </Masonry>
-        </ResponsiveMasonry>
+        <>
+            <ResponsiveMasonry columnsCountBreakPoints={positionGifs}>
+                <Masonry>
+                    {
+                        gifs.map(({ id, title, url }, index) => {
+                            return <Gif title={title} id={id} url={url} key={index} />
+                        })
+                    }
+                </Masonry>
+            </ResponsiveMasonry>
+            {
+                loadNextPage && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: "20px", marginBottom: "30px" }}>
+                        <CircularProgress color="inherit" size={"5rem"} />
+                    </Box>
+                )
+            }
+        </>
+
     )
 
     // <Masonry columns={{ xs: 1, md: 3, xl: 4 }} spacing={2}>

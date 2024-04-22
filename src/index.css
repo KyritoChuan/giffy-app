@@ -42,8 +42,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--fz);
-  background-color: var(--theme-body-bg);
-  color: var(--theme-body-txt);
+  background-color: #242424;
+  color: #ffffffde;
 }
 
 h1 {

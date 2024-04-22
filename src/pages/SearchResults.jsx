@@ -3,11 +3,12 @@ import ListOfGifs from "../components/ListOfGifs/ListOfGifs";
 import { useGifs } from "../hooks/useGifs";
 import { useNearScreen } from "../hooks/useNearScreen";
 import debounce from 'just-debounce-it';
+import { Box, CircularProgress } from "@mui/material";
 
 
 export default function SearchResults({ params }) {
     const { keyword } = params;
-    const { loading, gifs, setPage } = useGifs({ keyword });
+    const { loading, gifs, setPage, loadingNextPage } = useGifs({ keyword });
     const externalRef = useRef();
     const { showNearScreen } = useNearScreen({ externalRef, once: false });
 
@@ -26,11 +27,15 @@ export default function SearchResults({ params }) {
     return (
         <>
             {loading ? (
-                <i>Loading...</i>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <CircularProgress color="inherit" size={"5rem"} />
+                </Box>
             ) : (
                 <>
                     <h3 className="App-title">{keyword}</h3>
-                    <ListOfGifs gifs={gifs} fromIndex={false} />
+                    <Box component={"div"} marginBottom={20}>
+                        <ListOfGifs gifs={gifs} fromIndex={false} loadNextPage={loadingNextPage} />
+                    </Box>
                     <div id={"visor"} ref={externalRef}></div>
                 </>
             )}
